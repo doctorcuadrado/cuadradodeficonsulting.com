@@ -512,6 +512,277 @@ window.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.replace('#', '');
   if (hash && document.getElementById(hash)) showPage(hash);
 });
+
+// ── TRANSLATION SYSTEM ──────────────────────────────
+let currentLang = 'en';
+
+const translations = {
+  en: {
+    // NAV
+    'nav-home':'Home','nav-about':'About','nav-services':'Services',
+    'nav-methodology':'Methodology','nav-solutions':'Solutions',
+    'nav-insights':'Insights','nav-contact':'Contact','nav-schedule':'Schedule a Session',
+    // HERO
+    'hero-label':'Institutional Advisory — Puerto Rico',
+    'hero-h1':'Strategic Advisory for<br><em>Institutional-Grade</em><br>Digital Finance',
+    'hero-lead':'Cuadrado DeFi Consulting LLC provides governance-first advisory services in blockchain strategy, decentralized finance, tokenization architecture, and digital transformation — designed for enterprises, government entities, and sophisticated decision-makers navigating complex digital infrastructure.',
+    'hero-btn1':'Schedule a 30-Minute Strategic Session',
+    'hero-btn2':'Request an Institutional Proposal',
+    'hero-stat1':'Core Advisory Lines','hero-stat2':'Engagement Phases',
+    'hero-stat3':'Sectors Served','hero-stat4':'Puerto Rico Registered',
+    'scroll':'Scroll',
+    // CAPABILITIES
+    'cap-label':'Core Capabilities','cap-h2':'Advisory Strengths',
+    'cap-lead':'Our practice is anchored in six core advisory disciplines, each designed to deliver structured, documented, and governance-aligned outcomes for institutional clients.',
+    'cap1-h':'Blockchain Strategy & Architecture','cap1-p':'Structured evaluation of distributed ledger technologies, consensus mechanisms, and protocol selection aligned with institutional risk tolerances and operational requirements.',
+    'cap2-h':'Decentralized Finance (DeFi) Advisory','cap2-p':'In-depth analysis of DeFi protocol mechanics, liquidity infrastructure, and governance models for organizations evaluating institutional DeFi participation frameworks.',
+    'cap3-h':'Tokenization & Governance Design','cap3-p':'Development of token architecture frameworks, governance structures, and on-chain policy mechanisms for real-world asset tokenization and organizational governance.',
+    'cap4-h':'Smart Contract Specification','cap4-p':'Advisory on smart contract design specifications, audit readiness, risk parameters, and technical documentation standards for regulated deployment environments.',
+    'cap5-h':'Risk Assessment & Controls','cap5-p':'Comprehensive risk matrices covering on-chain, off-chain, counterparty, custody, regulatory, and operational dimensions for technology adoption decision frameworks.',
+    'cap6-h':'Executive & Technical Education','cap6-p':'Structured education programs for boards, executive teams, and technical staff covering blockchain fundamentals, DeFi mechanics, governance, and institutional risk literacy.',
+    // SECTORS
+    'sectors-label':'Sectors Served','sectors-h2':'Institutional Audiences',
+    'sector1-h':'Individuals','sector1-p':'Sophisticated investors, high-net-worth individuals, family office principals, and executive decision-makers seeking structured frameworks for blockchain exposure, custody awareness, and risk-calibrated strategy.',
+    'sector2-h':'Enterprises','sector2-p':'Fintech companies, financial institutions, startups, and corporations seeking structured blockchain adoption roadmaps, operating model design, compliance alignment, and technical implementation oversight.',
+    'sector3-h':'Governments','sector3-p':'Municipal, regional, and federal agencies, public development banks, and regulatory bodies pursuing digital modernization, traceability infrastructure, and procurement-ready pilot programs.',
+    // METHODOLOGY OVERVIEW
+    'meth-label':'Engagement Methodology','meth-h2':'A Four-Phase Consulting Framework',
+    'meth-lead':'Every engagement follows a structured, documented process — from initial assessment through capability transfer — ensuring measurable outcomes and institutional continuity.',
+    'phase1-num':'Phase 01','phase1-h':'Diagnostic Assessment','phase1-p':'Structured evaluation of the client\'s current state, organizational readiness, and technology posture relative to defined objectives.',
+    'phase2-num':'Phase 02','phase2-h':'Strategic Design & Architecture','phase2-p':'Development of governance frameworks, technical architecture specifications, and risk matrices aligned with institutional requirements.',
+    'phase3-num':'Phase 03','phase3-h':'Implementation & Pilot Oversight','phase3-p':'Structured oversight of pilot programs, technical validation, vendor assessment, and documentation of operational controls.',
+    'phase4-num':'Phase 04','phase4-h':'Evaluation & Capability Transfer','phase4-p':'Final deliverable compilation, outcome measurement, and internal capability transfer to ensure institutional continuity beyond the engagement.',
+    'btn-view-methodology':'View Full Methodology',
+    // DIFFERENTIATORS
+    'diff-label':'What Distinguishes This Practice','diff-h2':'Institutional Differentiators',
+    'diff-lead':'Cuadrado DeFi Consulting LLC operates at the intersection of technical expertise and institutional discipline — a combination that is rare in the blockchain advisory market.',
+    'diff1-h':'Governance-First Approach','diff1-p':'Every recommendation is structured around governance, accountability, and documentation — not technology adoption for its own sake.',
+    'diff2-h':'Cross-Domain Expertise','diff2-p':'Our principal combines clinical pharmacy regulatory training with advanced blockchain infrastructure knowledge — enabling uniquely rigorous risk analysis in regulated industries.',
+    'diff3-h':'Regulated-Environment Fluency','diff3-p':'Advisory capacity calibrated for highly regulated operating environments, including healthcare, financial services, and public sector procurement contexts.',
+    'diff4-h':'RFP & Procurement Readiness','diff4-p':'Deliverable standards, documentation protocols, and engagement structures designed to integrate seamlessly with enterprise and government procurement processes.',
+    'diff5-h':'Caribbean & LATAM Market Access','diff5-p':'Puerto Rico-based practice offering strategic insight into U.S.-territory regulatory frameworks and emerging Caribbean and Latin American digital finance markets.',
+    // ABOUT
+    'about-label':'Principal Advisor',
+    'about-mission-label':'Our Mission','about-mission-h':'Mission Statement',
+    'about-mission-lead':'To provide institutional-grade strategic advisory services that enable organizations to navigate blockchain and decentralized finance infrastructure with governance discipline, operational rigor, and informed confidence.',
+    'about-vision-label':'Our Vision','about-vision-h':'Where We Are Going',
+    'about-vision-p':'To become the leading governance-first blockchain advisory practice serving regulated enterprises and government institutions in the Caribbean, Puerto Rico, and the broader Americas — recognized for integrity, intellectual rigor, and institutional-quality deliverables.',
+    'about-principles-label':'Operating Principles','about-principles-h':'Core Principles & Ethical Framework',
+    // SERVICES
+    'services-label':'Advisory Services',
+    'services-h1':'Structured Advisory<br>for <em>Institutional Needs</em>',
+    'services-lead':'Six specialized advisory lines, each designed to deliver governance-aligned, formally documented, and risk-calibrated outcomes for institutional clients.',
+    // SCHEDULE
+    'schedule-label':'Formal Engagement Entry',
+    'schedule-h1':'Schedule a 30-Minute<br><em>Strategic Consultation</em>',
+    'schedule-btn':'View Available Times & Book',
+    // CONTACT
+    'contact-label':'Institutional Inquiry',
+    'contact-h1':'Submit an<br><em>Institutional Inquiry</em>',
+    // FOOTER
+    'footer-copy':'© 2025 Cuadrado DeFi Consulting LLC. All rights reserved. No financial advice is provided. All advisory is educational and strategic in nature.',
+  },
+  es: {
+    // NAV
+    'nav-home':'Inicio','nav-about':'Nosotros','nav-services':'Servicios',
+    'nav-methodology':'Metodología','nav-solutions':'Soluciones',
+    'nav-insights':'Recursos','nav-contact':'Contacto','nav-schedule':'Agendar Sesión',
+    // HERO
+    'hero-label':'Asesoría Institucional — Puerto Rico',
+    'hero-h1':'Asesoría Estratégica para<br><em>Finanzas Digitales</em><br>Institucionales',
+    'hero-lead':'Cuadrado DeFi Consulting LLC ofrece servicios de asesoría con enfoque en gobernanza para estrategia blockchain, finanzas descentralizadas, arquitectura de tokenización y transformación digital — diseñados para empresas, entidades gubernamentales y tomadores de decisiones sofisticados.',
+    'hero-btn1':'Agendar Sesión Estratégica de 30 Minutos',
+    'hero-btn2':'Solicitar Propuesta Institucional',
+    'hero-stat1':'Líneas de Asesoría','hero-stat2':'Fases de Compromiso',
+    'hero-stat3':'Sectores Atendidos','hero-stat4':'Registrado en Puerto Rico',
+    'scroll':'Bajar',
+    // CAPABILITIES
+    'cap-label':'Capacidades Principales','cap-h2':'Fortalezas de Asesoría',
+    'cap-lead':'Nuestra práctica se basa en seis disciplinas de asesoría, diseñadas para entregar resultados estructurados, documentados y alineados con la gobernanza institucional.',
+    'cap1-h':'Estrategia y Arquitectura Blockchain','cap1-p':'Evaluación estructurada de tecnologías de ledger distribuido, mecanismos de consenso y selección de protocolos alineados con las tolerancias de riesgo institucional.',
+    'cap2-h':'Asesoría en Finanzas Descentralizadas (DeFi)','cap2-p':'Análisis profundo de la mecánica de protocolos DeFi, infraestructura de liquidez y modelos de gobernanza para organizaciones que evalúan marcos de participación institucional en DeFi.',
+    'cap3-h':'Diseño de Tokenización y Gobernanza','cap3-p':'Desarrollo de marcos de arquitectura de tokens, estructuras de gobernanza y mecanismos de política on-chain para tokenización de activos del mundo real.',
+    'cap4-h':'Especificación de Contratos Inteligentes','cap4-p':'Asesoría en especificaciones de diseño de contratos inteligentes, preparación para auditorías, parámetros de riesgo y estándares de documentación técnica.',
+    'cap5-h':'Evaluación de Riesgos y Controles','cap5-p':'Matrices de riesgo integrales que cubren dimensiones on-chain, off-chain, contraparte, custodia, regulatoria y operacional para marcos de decisión de adopción tecnológica.',
+    'cap6-h':'Educación Ejecutiva y Técnica','cap6-p':'Programas de educación estructurada para juntas directivas, equipos ejecutivos y personal técnico sobre fundamentos blockchain, mecánica DeFi y gobernanza institucional.',
+    // SECTORS
+    'sectors-label':'Sectores Atendidos','sectors-h2':'Audiencias Institucionales',
+    'sector1-h':'Individuos','sector1-p':'Inversores sofisticados, individuos de alto patrimonio, directores de family offices y tomadores de decisiones ejecutivos que buscan marcos estructurados para exposición blockchain, gestión de custodia y estrategia calibrada al riesgo.',
+    'sector2-h':'Empresas','sector2-p':'Empresas fintech, instituciones financieras, startups y corporaciones que buscan hojas de ruta estructuradas para adopción blockchain, diseño de modelos operativos, alineación regulatoria y supervisión de implementación técnica.',
+    'sector3-h':'Gobiernos','sector3-p':'Agencias municipales, regionales y federales, bancos de desarrollo público y organismos reguladores que buscan modernización digital, infraestructura de trazabilidad y programas piloto listos para licitación.',
+    // METHODOLOGY OVERVIEW
+    'meth-label':'Metodología de Compromiso','meth-h2':'Marco de Consultoría de Cuatro Fases',
+    'meth-lead':'Cada compromiso sigue un proceso estructurado y documentado — desde la evaluación inicial hasta la transferencia de capacidades — garantizando resultados medibles y continuidad institucional.',
+    'phase1-num':'Fase 01','phase1-h':'Evaluación Diagnóstica','phase1-p':'Evaluación estructurada del estado actual del cliente, preparación organizacional y postura tecnológica relativa a los objetivos definidos.',
+    'phase2-num':'Fase 02','phase2-h':'Diseño Estratégico y Arquitectura','phase2-p':'Desarrollo de marcos de gobernanza, especificaciones de arquitectura técnica y matrices de riesgo alineadas con los requisitos institucionales.',
+    'phase3-num':'Fase 03','phase3-h':'Supervisión de Implementación y Piloto','phase3-p':'Supervisión estructurada de programas piloto, validación técnica, evaluación de proveedores y documentación de controles operacionales.',
+    'phase4-num':'Fase 04','phase4-h':'Evaluación y Transferencia de Capacidades','phase4-p':'Compilación de entregables finales, medición de resultados y transferencia interna de capacidades para garantizar la continuidad institucional más allá del compromiso.',
+    'btn-view-methodology':'Ver Metodología Completa',
+    // DIFFERENTIATORS
+    'diff-label':'Lo Que Distingue Esta Práctica','diff-h2':'Diferenciadores Institucionales',
+    'diff-lead':'Cuadrado DeFi Consulting LLC opera en la intersección de la experiencia técnica y la disciplina institucional — una combinación poco común en el mercado de asesoría blockchain.',
+    'diff1-h':'Enfoque Gobernanza Primero','diff1-p':'Cada recomendación está estructurada en torno a la gobernanza, la responsabilidad y la documentación — no a la adopción tecnológica por sí misma.',
+    'diff2-h':'Experiencia Multidisciplinaria','diff2-p':'Nuestro asesor principal combina formación regulatoria en farmacia clínica con conocimiento avanzado de infraestructura blockchain — permitiendo un análisis de riesgos únicamente riguroso en industrias reguladas.',
+    'diff3-h':'Dominio de Entornos Regulados','diff3-p':'Capacidad de asesoría calibrada para entornos operativos altamente regulados, incluyendo salud, servicios financieros y contextos de contratación pública.',
+    'diff4-h':'Preparación para RFP y Licitaciones','diff4-p':'Estándares de entregables, protocolos de documentación y estructuras de compromiso diseñados para integrarse sin problemas con los procesos de adquisición empresarial y gubernamental.',
+    'diff5-h':'Acceso al Mercado Caribeño y LATAM','diff5-p':'Práctica con base en Puerto Rico que ofrece perspectiva estratégica sobre los marcos regulatorios del territorio de EE.UU. y los mercados emergentes de finanzas digitales del Caribe y América Latina.',
+    // ABOUT
+    'about-label':'Asesor Principal',
+    'about-mission-label':'Nuestra Misión','about-mission-h':'Declaración de Misión',
+    'about-mission-lead':'Proveer servicios de asesoría estratégica institucional que permitan a las organizaciones navegar la infraestructura blockchain y DeFi con disciplina de gobernanza, rigor operacional y confianza informada.',
+    'about-vision-label':'Nuestra Visión','about-vision-h':'Hacia Dónde Vamos',
+    'about-vision-p':'Convertirnos en la práctica de asesoría blockchain líder con enfoque en gobernanza para empresas reguladas e instituciones gubernamentales en el Caribe, Puerto Rico y las Américas — reconocidos por la integridad, el rigor intelectual y los entregables de calidad institucional.',
+    'about-principles-label':'Principios Operativos','about-principles-h':'Principios Fundamentales y Marco Ético',
+    // SERVICES
+    'services-label':'Servicios de Asesoría',
+    'services-h1':'Asesoría Estructurada<br>para <em>Necesidades Institucionales</em>',
+    'services-lead':'Seis líneas de asesoría especializadas, diseñadas para entregar resultados alineados con gobernanza, formalmente documentados y calibrados al riesgo para clientes institucionales.',
+    // SCHEDULE
+    'schedule-label':'Inicio de Compromiso Formal',
+    'schedule-h1':'Agendar una Consulta<br><em>Estratégica de 30 Minutos</em>',
+    'schedule-btn':'Ver Horarios Disponibles y Reservar',
+    // CONTACT
+    'contact-label':'Consulta Institucional',
+    'contact-h1':'Enviar una<br><em>Consulta Institucional</em>',
+    // FOOTER
+    'footer-copy':'© 2025 Cuadrado DeFi Consulting LLC. Todos los derechos reservados. No se provee asesoría financiera. Todos los servicios son de naturaleza estratégica y educativa.',
+  }
+};
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'es' : 'en';
+  const btn = document.getElementById('lang-btn');
+  btn.textContent = currentLang === 'en' ? 'ES' : 'EN';
+  applyTranslations();
+}
+
+function applyTranslations() {
+  const t = translations[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+}
+
+  en: {
+    // NAV
+    'nav-home': 'Home', 'nav-about': 'About', 'nav-services': 'Services',
+    'nav-methodology': 'Methodology', 'nav-solutions': 'Solutions',
+    'nav-insights': 'Insights', 'nav-contact': 'Contact',
+    'nav-schedule': 'Schedule a Session',
+    // HERO
+    'hero-label': 'Institutional Advisory — Puerto Rico',
+    'hero-h1': 'Strategic Advisory for<br><em>Institutional-Grade</em><br>Digital Finance',
+    'hero-lead': 'Cuadrado DeFi Consulting LLC provides governance-first advisory services in blockchain strategy, decentralized finance, tokenization architecture, and digital transformation — designed for enterprises, government entities, and sophisticated decision-makers navigating complex digital infrastructure.',
+    'hero-btn1': 'Schedule a 30-Minute Strategic Session',
+    'hero-btn2': 'Request an Institutional Proposal',
+    'hero-stat1': 'Core Advisory Lines', 'hero-stat2': 'Engagement Phases',
+    'hero-stat3': 'Sectors Served', 'hero-stat4': 'Puerto Rico Registered',
+    // CAPABILITIES
+    'cap-label': 'Core Capabilities', 'cap-h2': 'Advisory Strengths',
+    'cap-lead': 'Our practice is anchored in six core advisory disciplines, each designed to deliver structured, documented, and governance-aligned outcomes for institutional clients.',
+    'cap1-h': 'Blockchain Strategy & Architecture', 'cap1-p': 'Structured evaluation of distributed ledger technologies, consensus mechanisms, and protocol selection aligned with institutional risk tolerances and operational requirements.',
+    'cap2-h': 'Decentralized Finance (DeFi) Advisory', 'cap2-p': 'In-depth analysis of DeFi protocol mechanics, liquidity infrastructure, and governance models for organizations evaluating institutional DeFi participation frameworks.',
+    'cap3-h': 'Tokenization & Governance Design', 'cap3-p': 'Development of token architecture frameworks, governance structures, and on-chain policy mechanisms for real-world asset tokenization and organizational governance.',
+    'cap4-h': 'Smart Contract Specification', 'cap4-p': 'Advisory on smart contract design specifications, audit readiness, risk parameters, and technical documentation standards for regulated deployment environments.',
+    'cap5-h': 'Risk Assessment & Controls', 'cap5-p': 'Comprehensive risk matrices covering on-chain, off-chain, counterparty, custody, regulatory, and operational dimensions for technology adoption decision frameworks.',
+    'cap6-h': 'Executive & Technical Education', 'cap6-p': 'Structured education programs for boards, executive teams, and technical staff covering blockchain fundamentals, DeFi mechanics, governance, and institutional risk literacy.',
+    // SECTORS
+    'sectors-label': 'Sectors Served', 'sectors-h2': 'Institutional Audiences',
+    'sector1-h': 'Individuals', 'sector1-p': 'Sophisticated investors, high-net-worth individuals, family office principals, and executive decision-makers seeking structured frameworks for blockchain exposure, custody awareness, and risk-calibrated strategy.',
+    'sector2-h': 'Enterprises', 'sector2-p': 'Fintech companies, financial institutions, startups, and corporations seeking structured blockchain adoption roadmaps, operating model design, compliance alignment, and technical implementation oversight.',
+    'sector3-h': 'Governments', 'sector3-p': 'Municipal, regional, and federal agencies, public development banks, and regulatory bodies pursuing digital modernization, traceability infrastructure, and procurement-ready pilot programs.',
+    // ABOUT page
+    'about-label': 'Principal Advisor',
+    'about-mission-label': 'Our Mission', 'about-mission-h': 'Mission Statement',
+    'about-mission-lead': 'To provide institutional-grade strategic advisory services that enable organizations to navigate blockchain and decentralized finance infrastructure with governance discipline, operational rigor, and informed confidence.',
+    'about-vision-label': 'Our Vision', 'about-vision-h': 'Where We Are Going',
+    'about-vision-p': 'To become the leading governance-first blockchain advisory practice serving regulated enterprises and government institutions in the Caribbean, Puerto Rico, and the broader Americas — recognized for integrity, intellectual rigor, and institutional-quality deliverables.',
+    'about-principles-label': 'Operating Principles', 'about-principles-h': 'Core Principles & Ethical Framework',
+    // SERVICES page
+    'services-label': 'Advisory Services',
+    'services-h1': 'Structured Advisory<br>for <em>Institutional Needs</em>',
+    'services-lead': 'Six specialized advisory lines, each designed to deliver governance-aligned, formally documented, and risk-calibrated outcomes for institutional clients.',
+    // SCHEDULE
+    'schedule-label': 'Formal Engagement Entry',
+    'schedule-h1': 'Schedule a 30-Minute<br><em>Strategic Consultation</em>',
+    'schedule-about-h': 'About This Consultation',
+    'schedule-btn': 'View Available Times & Book',
+    // CONTACT
+    'contact-label': 'Institutional Inquiry',
+    'contact-h1': 'Submit an<br><em>Institutional Inquiry</em>',
+    // FOOTER
+    'footer-services-h': 'Advisory Services', 'footer-firm-h': 'Firm', 'footer-contact-h': 'Contact',
+    'footer-copy': '© 2025 Cuadrado DeFi Consulting LLC. All rights reserved. No financial advice is provided. All advisory is educational and strategic in nature.',
+  },
+  es: {
+    // NAV
+    'nav-home': 'Inicio', 'nav-about': 'Nosotros', 'nav-services': 'Servicios',
+    'nav-methodology': 'Metodología', 'nav-solutions': 'Soluciones',
+    'nav-insights': 'Recursos', 'nav-contact': 'Contacto',
+    'nav-schedule': 'Agendar Sesión',
+    // HERO
+    'hero-label': 'Asesoría Institucional — Puerto Rico',
+    'hero-h1': 'Asesoría Estratégica para<br><em>Finanzas Digitales</em><br>Institucionales',
+    'hero-lead': 'Cuadrado DeFi Consulting LLC ofrece servicios de asesoría con enfoque en gobernanza para estrategia blockchain, finanzas descentralizadas, arquitectura de tokenización y transformación digital — diseñados para empresas, entidades gubernamentales y tomadores de decisiones sofisticados.',
+    'hero-btn1': 'Agendar Sesión Estratégica de 30 Minutos',
+    'hero-btn2': 'Solicitar Propuesta Institucional',
+    'hero-stat1': 'Líneas de Asesoría', 'hero-stat2': 'Fases de Compromiso',
+    'hero-stat3': 'Sectores Atendidos', 'hero-stat4': 'Registrado en Puerto Rico',
+    // CAPABILITIES
+    'cap-label': 'Capacidades Principales', 'cap-h2': 'Fortalezas de Asesoría',
+    'cap-lead': 'Nuestra práctica se basa en seis disciplinas de asesoría, diseñadas para entregar resultados estructurados, documentados y alineados con la gobernanza institucional.',
+    'cap1-h': 'Estrategia & Arquitectura Blockchain', 'cap1-p': 'Evaluación estructurada de tecnologías de ledger distribuido, mecanismos de consenso y selección de protocolos alineados con las tolerancias de riesgo institucional.',
+    'cap2-h': 'Asesoría en Finanzas Descentralizadas (DeFi)', 'cap2-p': 'Análisis profundo de la mecánica de protocolos DeFi, infraestructura de liquidez y modelos de gobernanza para organizaciones que evalúan marcos de participación institucional en DeFi.',
+    'cap3-h': 'Diseño de Tokenización & Gobernanza', 'cap3-p': 'Desarrollo de marcos de arquitectura de tokens, estructuras de gobernanza y mecanismos de política on-chain para tokenización de activos del mundo real.',
+    'cap4-h': 'Especificación de Contratos Inteligentes', 'cap4-p': 'Asesoría en especificaciones de diseño de contratos inteligentes, preparación para auditorías, parámetros de riesgo y estándares de documentación técnica.',
+    'cap5-h': 'Evaluación de Riesgos & Controles', 'cap5-p': 'Matrices de riesgo integrales que cubren dimensiones on-chain, off-chain, contraparte, custodia, regulatoria y operacional para marcos de decisión de adopción tecnológica.',
+    'cap6-h': 'Educación Ejecutiva & Técnica', 'cap6-p': 'Programas de educación estructurada para juntas directivas, equipos ejecutivos y personal técnico sobre fundamentos blockchain, mecánica DeFi y gobernanza institucional.',
+    // SECTORS
+    'sectors-label': 'Sectores Atendidos', 'sectors-h2': 'Audiencias Institucionales',
+    'sector1-h': 'Individuos', 'sector1-p': 'Inversores sofisticados, individuos de alto patrimonio, directores de family offices y tomadores de decisiones ejecutivos que buscan marcos estructurados para exposición blockchain.',
+    'sector2-h': 'Empresas', 'sector2-p': 'Empresas fintech, instituciones financieras, startups y corporaciones que buscan hojas de ruta estructuradas para adopción blockchain, diseño de modelos operativos y alineación regulatoria.',
+    'sector3-h': 'Gobiernos', 'sector3-p': 'Agencias municipales, regionales y federales, bancos de desarrollo público y organismos reguladores que buscan modernización digital, infraestructura de trazabilidad y programas piloto.',
+    // ABOUT page
+    'about-label': 'Asesor Principal',
+    'about-mission-label': 'Nuestra Misión', 'about-mission-h': 'Declaración de Misión',
+    'about-mission-lead': 'Proveer servicios de asesoría estratégica institucional que permitan a las organizaciones navegar la infraestructura blockchain y DeFi con disciplina de gobernanza, rigor operacional y confianza informada.',
+    'about-vision-label': 'Nuestra Visión', 'about-vision-h': 'Hacia Dónde Vamos',
+    'about-vision-p': 'Convertirnos en la práctica de asesoría blockchain líder con enfoque en gobernanza para empresas reguladas e instituciones gubernamentales en el Caribe, Puerto Rico y las Américas.',
+    'about-principles-label': 'Principios Operativos', 'about-principles-h': 'Principios Fundamentales & Marco Ético',
+    // SERVICES
+    'services-label': 'Servicios de Asesoría',
+    'services-h1': 'Asesoría Estructurada<br>para <em>Necesidades Institucionales</em>',
+    'services-lead': 'Seis líneas de asesoría especializadas, diseñadas para entregar resultados alineados con gobernanza, formalmente documentados y calibrados al riesgo.',
+    // SCHEDULE
+    'schedule-label': 'Inicio de Compromiso Formal',
+    'schedule-h1': 'Agendar una Consulta<br><em>Estratégica de 30 Minutos</em>',
+    'schedule-about-h': 'Sobre Esta Consulta',
+    'schedule-btn': 'Ver Horarios Disponibles & Reservar',
+    // CONTACT
+    'contact-label': 'Consulta Institucional',
+    'contact-h1': 'Enviar una<br><em>Consulta Institucional</em>',
+    // FOOTER
+    'footer-services-h': 'Servicios de Asesoría', 'footer-firm-h': 'La Firma', 'footer-contact-h': 'Contacto',
+    'footer-copy': '© 2025 Cuadrado DeFi Consulting LLC. Todos los derechos reservados. No se provee asesoría financiera. Todos los servicios son de naturaleza estratégica y educativa.',
+  }
+};
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'es' : 'en';
+  const btn = document.getElementById('lang-btn');
+  btn.textContent = currentLang === 'en' ? 'ES' : 'EN';
+  applyTranslations();
+}
+
+function applyTranslations() {
+  const t = translations[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.innerHTML = t[key];
+  });
+}
+
 </script>
 </head>
 <body>
@@ -526,14 +797,15 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
     </a>
     <div class="nav-links">
-      <a href="#home" onclick="showPage('home'); return false;">Home</a>
-      <a href="#about" onclick="showPage('about'); return false;">About</a>
-      <a href="#services" onclick="showPage('services'); return false;">Services</a>
-      <a href="#methodology" onclick="showPage('methodology'); return false;">Methodology</a>
-      <a href="#solutions" onclick="showPage('solutions'); return false;">Solutions</a>
-      <a href="#insights" onclick="showPage('insights'); return false;">Insights</a>
-      <a href="#contact" onclick="showPage('contact'); return false;">Contact</a>
-      <a href="#schedule" class="nav-cta" onclick="showPage('schedule'); return false;">Schedule a Session</a>
+      <a href="#home" onclick="showPage('home'); return false;" data-i18n="nav-home">Home</a>
+      <a href="#about" onclick="showPage('about'); return false;" data-i18n="nav-about">About</a>
+      <a href="#services" onclick="showPage('services'); return false;" data-i18n="nav-services">Services</a>
+      <a href="#methodology" onclick="showPage('methodology'); return false;" data-i18n="nav-methodology">Methodology</a>
+      <a href="#solutions" onclick="showPage('solutions'); return false;" data-i18n="nav-solutions">Solutions</a>
+      <a href="#insights" onclick="showPage('insights'); return false;" data-i18n="nav-insights">Insights</a>
+      <a href="#contact" onclick="showPage('contact'); return false;" data-i18n="nav-contact">Contact</a>
+      <button onclick="toggleLang()" id="lang-btn" style="background:transparent; border:1px solid var(--border); color:var(--gray-light); font-family:'Montserrat',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.12em; padding:0.4rem 0.9rem; cursor:pointer; transition:all 0.2s; text-transform:uppercase;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--gray-light)'">ES</button>
+      <a href="#schedule" class="nav-cta" onclick="showPage('schedule'); return false;" data-i18n="nav-schedule">Schedule a Session</a>
     </div>
   </div>
 </nav>
@@ -550,38 +822,38 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="hero-content">
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-line"></div>
-          <span class="label">Institutional Advisory — Puerto Rico</span>
+          <span class="label" data-i18n="hero-label">Institutional Advisory — Puerto Rico</span>
         </div>
-        <h1>Strategic Advisory for<br><em>Institutional-Grade</em><br>Digital Finance</h1>
+        <h1 data-i18n="hero-h1">Strategic Advisory for<br><em>Institutional-Grade</em><br>Digital Finance</h1>
         <div class="divider"></div>
-        <p class="lead">Cuadrado DeFi Consulting LLC provides governance-first advisory services in blockchain strategy, decentralized finance, tokenization architecture, and digital transformation — designed for enterprises, government entities, and sophisticated decision-makers navigating complex digital infrastructure.</p>
+        <p class="lead" data-i18n="hero-lead">Cuadrado DeFi Consulting LLC provides governance-first advisory services in blockchain strategy, decentralized finance, tokenization architecture, and digital transformation — designed for enterprises, government entities, and sophisticated decision-makers navigating complex digital infrastructure.</p>
         <div class="hero-ctas">
-          <a href="#schedule" class="btn-primary" onclick="showPage('schedule')">Schedule a 30-Minute Strategic Session</a>
-          <a href="#contact" class="btn-secondary" onclick="showPage('contact')">Request an Institutional Proposal</a>
+          <a href="#schedule" class="btn-primary" onclick="showPage('schedule')" data-i18n="hero-btn1">Schedule a 30-Minute Strategic Session</a>
+          <a href="#contact" class="btn-secondary" onclick="showPage('contact')" data-i18n="hero-btn2">Request an Institutional Proposal</a>
         </div>
         <div class="hero-stats">
           <div>
             <div class="hero-stat-num">6</div>
-            <div class="hero-stat-label">Core Advisory Lines</div>
+            <div class="hero-stat-label" data-i18n="hero-stat1">Core Advisory Lines</div>
           </div>
           <div>
             <div class="hero-stat-num">4</div>
-            <div class="hero-stat-label">Engagement Phases</div>
+            <div class="hero-stat-label" data-i18n="hero-stat2">Engagement Phases</div>
           </div>
           <div>
             <div class="hero-stat-num">3</div>
-            <div class="hero-stat-label">Sectors Served</div>
+            <div class="hero-stat-label" data-i18n="hero-stat3">Sectors Served</div>
           </div>
           <div>
             <div class="hero-stat-num">PR</div>
-            <div class="hero-stat-label">Puerto Rico Registered</div>
+            <div class="hero-stat-label" data-i18n="hero-stat4">Puerto Rico Registered</div>
           </div>
         </div>
       </div>
     </div>
     <div class="scroll-line">
       <div class="scroll-bar"></div>
-      <span>Scroll</span>
+      <span data-i18n="scroll">Scroll</span>
     </div>
   </section>
 
@@ -589,41 +861,41 @@ window.addEventListener('DOMContentLoaded', () => {
   <section class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="label">Core Capabilities</span>
+        <span class="label" data-i18n="cap-label">Core Capabilities</span>
         <div class="divider"></div>
-        <h2>Advisory Strengths</h2>
-        <p style="max-width:560px; margin-top:1rem;">Our practice is anchored in six core advisory disciplines, each designed to deliver structured, documented, and governance-aligned outcomes for institutional clients.</p>
+        <h2 data-i18n="cap-h2">Advisory Strengths</h2>
+        <p style="max-width:560px; margin-top:1rem;" data-i18n="cap-lead">Our practice is anchored in six core advisory disciplines, each designed to deliver structured, documented, and governance-aligned outcomes for institutional clients.</p>
       </div>
       <div class="grid-3">
         <div class="cap-card">
           <div class="cap-icon">⬡</div>
-          <h3>Blockchain Strategy & Architecture</h3>
-          <p>Structured evaluation of distributed ledger technologies, consensus mechanisms, and protocol selection aligned with institutional risk tolerances and operational requirements.</p>
+          <h3 data-i18n="cap1-h">Blockchain Strategy & Architecture</h3>
+          <p data-i18n="cap1-p">Structured evaluation of distributed ledger technologies, consensus mechanisms, and protocol selection aligned with institutional risk tolerances and operational requirements.</p>
         </div>
         <div class="cap-card">
           <div class="cap-icon">◈</div>
-          <h3>Decentralized Finance (DeFi) Advisory</h3>
-          <p>In-depth analysis of DeFi protocol mechanics, liquidity infrastructure, and governance models for organizations evaluating institutional DeFi participation frameworks.</p>
+          <h3 data-i18n="cap2-h">Decentralized Finance (DeFi) Advisory</h3>
+          <p data-i18n="cap2-p">In-depth analysis of DeFi protocol mechanics, liquidity infrastructure, and governance models for organizations evaluating institutional DeFi participation frameworks.</p>
         </div>
         <div class="cap-card">
           <div class="cap-icon">◇</div>
-          <h3>Tokenization & Governance Design</h3>
-          <p>Development of token architecture frameworks, governance structures, and on-chain policy mechanisms for real-world asset tokenization and organizational governance.</p>
+          <h3 data-i18n="cap3-h">Tokenization & Governance Design</h3>
+          <p data-i18n="cap3-p">Development of token architecture frameworks, governance structures, and on-chain policy mechanisms for real-world asset tokenization and organizational governance.</p>
         </div>
         <div class="cap-card">
           <div class="cap-icon">⬜</div>
-          <h3>Smart Contract Specification</h3>
-          <p>Advisory on smart contract design specifications, audit readiness, risk parameters, and technical documentation standards for regulated deployment environments.</p>
+          <h3 data-i18n="cap4-h">Smart Contract Specification</h3>
+          <p data-i18n="cap4-p">Advisory on smart contract design specifications, audit readiness, risk parameters, and technical documentation standards for regulated deployment environments.</p>
         </div>
         <div class="cap-card">
           <div class="cap-icon">◬</div>
-          <h3>Risk Assessment & Controls</h3>
-          <p>Comprehensive risk matrices covering on-chain, off-chain, counterparty, custody, regulatory, and operational dimensions for technology adoption decision frameworks.</p>
+          <h3 data-i18n="cap5-h">Risk Assessment & Controls</h3>
+          <p data-i18n="cap5-p">Comprehensive risk matrices covering on-chain, off-chain, counterparty, custody, regulatory, and operational dimensions for technology adoption decision frameworks.</p>
         </div>
         <div class="cap-card">
           <div class="cap-icon">◉</div>
-          <h3>Executive & Technical Education</h3>
-          <p>Structured education programs for boards, executive teams, and technical staff covering blockchain fundamentals, DeFi mechanics, governance, and institutional risk literacy.</p>
+          <h3 data-i18n="cap6-h">Executive & Technical Education</h3>
+          <p data-i18n="cap6-p">Structured education programs for boards, executive teams, and technical staff covering blockchain fundamentals, DeFi mechanics, governance, and institutional risk literacy.</p>
         </div>
       </div>
     </div>
@@ -633,25 +905,25 @@ window.addEventListener('DOMContentLoaded', () => {
   <section class="section">
     <div class="container">
       <div class="section-header centered" style="text-align:center;">
-        <span class="label">Sectors Served</span>
+        <span class="label" data-i18n="sectors-label">Sectors Served</span>
         <div class="divider divider-center"></div>
-        <h2>Institutional Audiences</h2>
+        <h2 data-i18n="sectors-h2">Institutional Audiences</h2>
       </div>
       <div class="grid-3">
         <div style="padding:2.5rem; border:1px solid var(--border); text-align:center;">
           <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--gold); font-weight:300; margin-bottom:1rem;">I</div>
-          <h3 style="margin-bottom:1rem;">Individuals</h3>
-          <p style="text-align:left;">Sophisticated investors, high-net-worth individuals, family office principals, and executive decision-makers seeking structured frameworks for blockchain exposure, custody awareness, and risk-calibrated strategy.</p>
+          <h3 style="margin-bottom:1rem;" data-i18n="sector1-h">Individuals</h3>
+          <p style="text-align:left;" data-i18n="sector1-p">Sophisticated investors, high-net-worth individuals, family office principals, and executive decision-makers seeking structured frameworks for blockchain exposure, custody awareness, and risk-calibrated strategy.</p>
         </div>
         <div style="padding:2.5rem; border:1px solid var(--gold); text-align:center; background:rgba(201,168,76,0.03);">
           <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--gold); font-weight:300; margin-bottom:1rem;">E</div>
-          <h3 style="margin-bottom:1rem;">Enterprises</h3>
-          <p style="text-align:left;">Fintech companies, financial institutions, startups, and corporations seeking structured blockchain adoption roadmaps, operating model design, compliance alignment, and technical implementation oversight.</p>
+          <h3 style="margin-bottom:1rem;" data-i18n="sector2-h">Enterprises</h3>
+          <p style="text-align:left;" data-i18n="sector2-p">Fintech companies, financial institutions, startups, and corporations seeking structured blockchain adoption roadmaps, operating model design, compliance alignment, and technical implementation oversight.</p>
         </div>
         <div style="padding:2.5rem; border:1px solid var(--border); text-align:center;">
           <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--gold); font-weight:300; margin-bottom:1rem;">G</div>
-          <h3 style="margin-bottom:1rem;">Governments</h3>
-          <p style="text-align:left;">Municipal, regional, and federal agencies, public development banks, and regulatory bodies pursuing digital modernization, traceability infrastructure, and procurement-ready pilot programs.</p>
+          <h3 style="margin-bottom:1rem;" data-i18n="sector3-h">Governments</h3>
+          <p style="text-align:left;" data-i18n="sector3-p">Municipal, regional, and federal agencies, public development banks, and regulatory bodies pursuing digital modernization, traceability infrastructure, and procurement-ready pilot programs.</p>
         </div>
       </div>
     </div>
@@ -661,35 +933,35 @@ window.addEventListener('DOMContentLoaded', () => {
   <section class="section section-dark">
     <div class="container">
       <div class="section-header centered" style="text-align:center;">
-        <span class="label">Engagement Methodology</span>
+        <span class="label" data-i18n="meth-label">Engagement Methodology</span>
         <div class="divider divider-center"></div>
-        <h2>A Four-Phase Consulting Framework</h2>
-        <p style="max-width:560px; margin: 1rem auto 0;">Every engagement follows a structured, documented process — from initial assessment through capability transfer — ensuring measurable outcomes and institutional continuity.</p>
+        <h2 data-i18n="meth-h2">A Four-Phase Consulting Framework</h2>
+        <p style="max-width:560px; margin: 1rem auto 0;" data-i18n="meth-lead">Every engagement follows a structured, documented process — from initial assessment through capability transfer — ensuring measurable outcomes and institutional continuity.</p>
       </div>
       <div class="grid-4" style="margin-top:3rem;">
         <div class="phase-card">
-          <div class="phase-num">Phase 01</div>
-          <h3>Diagnostic Assessment</h3>
-          <p>Structured evaluation of the client's current state, organizational readiness, and technology posture relative to defined objectives.</p>
+          <div class="phase-num" data-i18n="phase1-num">Phase 01</div>
+          <h3 data-i18n="phase1-h">Diagnostic Assessment</h3>
+          <p data-i18n="phase1-p">Structured evaluation of the client's current state, organizational readiness, and technology posture relative to defined objectives.</p>
         </div>
         <div class="phase-card">
-          <div class="phase-num">Phase 02</div>
-          <h3>Strategic Design & Architecture</h3>
-          <p>Development of governance frameworks, technical architecture specifications, and risk matrices aligned with institutional requirements.</p>
+          <div class="phase-num" data-i18n="phase2-num">Phase 02</div>
+          <h3 data-i18n="phase2-h">Strategic Design & Architecture</h3>
+          <p data-i18n="phase2-p">Development of governance frameworks, technical architecture specifications, and risk matrices aligned with institutional requirements.</p>
         </div>
         <div class="phase-card">
-          <div class="phase-num">Phase 03</div>
-          <h3>Implementation & Pilot Oversight</h3>
-          <p>Structured oversight of pilot programs, technical validation, vendor assessment, and documentation of operational controls.</p>
+          <div class="phase-num" data-i18n="phase3-num">Phase 03</div>
+          <h3 data-i18n="phase3-h">Implementation & Pilot Oversight</h3>
+          <p data-i18n="phase3-p">Structured oversight of pilot programs, technical validation, vendor assessment, and documentation of operational controls.</p>
         </div>
         <div class="phase-card">
-          <div class="phase-num">Phase 04</div>
-          <h3>Evaluation & Capability Transfer</h3>
-          <p>Final deliverable compilation, outcome measurement, and internal capability transfer to ensure institutional continuity beyond the engagement.</p>
+          <div class="phase-num" data-i18n="phase4-num">Phase 04</div>
+          <h3 data-i18n="phase4-h">Evaluation & Capability Transfer</h3>
+          <p data-i18n="phase4-p">Final deliverable compilation, outcome measurement, and internal capability transfer to ensure institutional continuity beyond the engagement.</p>
         </div>
       </div>
       <div style="text-align:center; margin-top:3rem;">
-        <a href="#methodology" class="btn-secondary" onclick="showPage('methodology')">View Full Methodology</a>
+        <a href="#methodology" class="btn-secondary" onclick="showPage('methodology')" data-i18n="btn-view-methodology">View Full Methodology</a>
       </div>
     </div>
   </section>
@@ -699,45 +971,45 @@ window.addEventListener('DOMContentLoaded', () => {
     <div class="container">
       <div class="grid-2" style="align-items:start;">
         <div>
-          <span class="label">What Distinguishes This Practice</span>
+          <span class="label" data-i18n="diff-label">What Distinguishes This Practice</span>
           <div class="divider"></div>
-          <h2>Institutional Differentiators</h2>
-          <p style="margin-top:1rem;">Cuadrado DeFi Consulting LLC operates at the intersection of technical expertise and institutional discipline — a combination that is rare in the blockchain advisory market.</p>
+          <h2 data-i18n="diff-h2">Institutional Differentiators</h2>
+          <p style="margin-top:1rem;" data-i18n="diff-lead">Cuadrado DeFi Consulting LLC operates at the intersection of technical expertise and institutional discipline — a combination that is rare in the blockchain advisory market.</p>
         </div>
         <div>
           <div class="diff-item">
             <div class="diff-num">01</div>
             <div class="diff-content">
-              <h4>Governance-First Approach</h4>
-              <p>Every recommendation is structured around governance, accountability, and documentation — not technology adoption for its own sake.</p>
+              <h4 data-i18n="diff1-h">Governance-First Approach</h4>
+              <p data-i18n="diff1-p">Every recommendation is structured around governance, accountability, and documentation — not technology adoption for its own sake.</p>
             </div>
           </div>
           <div class="diff-item">
             <div class="diff-num">02</div>
             <div class="diff-content">
-              <h4>Cross-Domain Expertise</h4>
-              <p>Our principal combines clinical pharmacy regulatory training with advanced blockchain infrastructure knowledge — enabling uniquely rigorous risk analysis in regulated industries.</p>
+              <h4 data-i18n="diff2-h">Cross-Domain Expertise</h4>
+              <p data-i18n="diff2-p">Our principal combines clinical pharmacy regulatory training with advanced blockchain infrastructure knowledge — enabling uniquely rigorous risk analysis in regulated industries.</p>
             </div>
           </div>
           <div class="diff-item">
             <div class="diff-num">03</div>
             <div class="diff-content">
-              <h4>Regulated-Environment Fluency</h4>
-              <p>Advisory capacity calibrated for highly regulated operating environments, including healthcare, financial services, and public sector procurement contexts.</p>
+              <h4 data-i18n="diff3-h">Regulated-Environment Fluency</h4>
+              <p data-i18n="diff3-p">Advisory capacity calibrated for highly regulated operating environments, including healthcare, financial services, and public sector procurement contexts.</p>
             </div>
           </div>
           <div class="diff-item">
             <div class="diff-num">04</div>
             <div class="diff-content">
-              <h4>RFP & Procurement Readiness</h4>
-              <p>Deliverable standards, documentation protocols, and engagement structures designed to integrate seamlessly with enterprise and government procurement processes.</p>
+              <h4 data-i18n="diff4-h">RFP & Procurement Readiness</h4>
+              <p data-i18n="diff4-p">Deliverable standards, documentation protocols, and engagement structures designed to integrate seamlessly with enterprise and government procurement processes.</p>
             </div>
           </div>
           <div class="diff-item">
             <div class="diff-num">05</div>
             <div class="diff-content">
-              <h4>Caribbean & LATAM Market Access</h4>
-              <p>Puerto Rico-based practice offering strategic insight into U.S.-territory regulatory frameworks and emerging Caribbean and Latin American digital finance markets.</p>
+              <h4 data-i18n="diff5-h">Caribbean & LATAM Market Access</h4>
+              <p data-i18n="diff5-p">Puerto Rico-based practice offering strategic insight into U.S.-territory regulatory frameworks and emerging Caribbean and Latin American digital finance markets.</p>
             </div>
           </div>
         </div>
@@ -805,9 +1077,9 @@ window.addEventListener('DOMContentLoaded', () => {
 <div id="schedule" class="page-section">
   <section style="padding: 8rem 0 4rem; background:var(--navy);">
     <div class="container">
-      <span class="label">Formal Engagement Entry</span>
+      <span class="label" data-i18n="schedule-label">Formal Engagement Entry</span>
       <div class="divider"></div>
-      <h1>Schedule a 30-Minute<br><em>Strategic Consultation</em></h1>
+      <h1 data-i18n="schedule-h1">Schedule a 30-Minute<br><em>Strategic Consultation</em></h1>
     </div>
   </section>
 
@@ -854,7 +1126,7 @@ window.addEventListener('DOMContentLoaded', () => {
               <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:var(--white); margin-bottom:0.75rem;">30 min with Dr. Cuadrado</h4>
               <p style="font-size:0.85rem; margin-bottom:0.5rem;">Virtual · Google Meet · No charge</p>
               <p style="font-size:0.82rem; color:var(--gray); margin-bottom:2rem;">Select a date and time that works for your schedule. You will receive an instant confirmation with your Google Meet link.</p>
-              <a href="https://calendar.app.google/xBH5XLcovKeQQpTv8" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block; font-size:0.78rem;">View Available Times &amp; Book</a>
+              <a href="https://calendar.app.google/xBH5XLcovKeQQpTv8" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block; font-size:0.78rem;" data-i18n="schedule-btn">View Available Times &amp; Book</a>
               <p style="font-size:0.72rem; color:var(--gray); margin-top:1rem;">Opens Google Calendar booking page in a new tab</p>
             </div>
 
@@ -939,7 +1211,7 @@ window.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div>
-          <span class="label">Principal Advisor</span>
+          <span class="label" data-i18n="about-label">Principal Advisor</span>
           <div class="divider"></div>
           <h2 style="margin-bottom:0.5rem;">Kevin M. Rivera Cuadrado, PharmD</h2>
           <p style="font-size:0.9rem; color:var(--gold); margin-bottom:2rem; font-style:italic;">Founder &amp; Principal Strategist — Cuadrado DeFi Consulting LLC</p>
@@ -1102,9 +1374,9 @@ window.addEventListener('DOMContentLoaded', () => {
 <div id="services" class="page-section">
   <section style="padding: 8rem 0 4rem; background:var(--navy);">
     <div class="container">
-      <span class="label">Advisory Services</span>
+      <span class="label" data-i18n="services-label">Advisory Services</span>
       <div class="divider"></div>
-      <h1>Structured Advisory<br>for <em>Institutional Needs</em></h1>
+      <h1 data-i18n="services-h1">Structured Advisory<br>for <em>Institutional Needs</em></h1>
       <p class="lead" style="max-width:560px; margin-top:1rem;">Six specialized advisory lines, each designed to deliver governance-aligned, formally documented, and risk-calibrated outcomes for institutional clients.</p>
     </div>
   </section>
@@ -2022,7 +2294,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <div class="gold-line" style="margin-bottom:2rem;"></div>
 
     <div class="footer-bottom">
-      <p>© 2025 Cuadrado DeFi Consulting LLC. All rights reserved. No financial advice is provided. All advisory is educational and strategic in nature.</p>
+      <p data-i18n="footer-copy">© 2025 Cuadrado DeFi Consulting LLC. All rights reserved. No financial advice is provided. All advisory is educational and strategic in nature.</p>
       <div class="footer-legal">
         <a href="#legal" onclick="showPage('legal'); return false;">Terms & Conditions</a>
         <a href="#legal" onclick="showPage('legal'); return false;">Privacy Policy</a>
