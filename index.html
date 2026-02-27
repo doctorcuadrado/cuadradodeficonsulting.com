@@ -493,6 +493,26 @@
 
 </style>
 <link rel="canonical" href="https://cuadradodeficonsulting.com/">
+<script>
+// Load showPage early so nav buttons work immediately
+function showPage(pageId) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => showPage(pageId));
+    return;
+  }
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(pageId);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.pushState(null, '', '#' + pageId);
+  }
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) showPage(hash);
+});
+</script>
 </head>
 <body>
 
@@ -2038,7 +2058,7 @@ function showPage(pageId) {
     const descTag = document.querySelector('meta[name="description"]');
     if (descTag) descTag.setAttribute('content', meta.desc);
     const canonTag = document.querySelector('link[rel="canonical"]');
-    if (canonTag) // canonTag.setAttribute('href', canonical);
+    if (canonTag) canonTag.setAttribute('href', 'https://cuadradodeficonsulting.com/#' + pageId);
   }
 }
 
@@ -2050,4 +2070,21 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('popstate', () => {
-  const hash = window.location.hash.r
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) {
+    showPage(hash);
+  } else {
+    showPage('home');
+  }
+});
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById(tabId);
+  if (panel) panel.classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
