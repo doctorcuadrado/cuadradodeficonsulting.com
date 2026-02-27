@@ -829,12 +829,14 @@
             <h3 style="margin-bottom:1rem;">Select a Date and Time</h3>
             <p style="font-size:0.85rem; margin-bottom:1.5rem;">Choose a time that suits your schedule. All time zones are supported. You will receive a confirmation with a virtual meeting link upon booking.</p>
 
-            <div class="calendly-placeholder">
-              <p style="font-size:0.9rem; color:var(--gray-light); margin-bottom:0.5rem; font-weight:500;">[ Scheduling Calendar ]</p>
-              <p>Calendly or equivalent scheduling integration to be embedded here.<br>Configure availability, time zones, and confirmation flow.</p>
+            <div style="text-align:center; padding:2.5rem 2rem; background:rgba(201,168,76,0.03); border:1px solid var(--border);">
+              <div style="font-size:2.5rem; margin-bottom:1rem;">📅</div>
+              <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:var(--white); margin-bottom:0.75rem;">30 min with Dr. Cuadrado</h4>
+              <p style="font-size:0.85rem; margin-bottom:0.5rem;">Virtual · Google Meet · No charge</p>
+              <p style="font-size:0.82rem; color:var(--gray); margin-bottom:2rem;">Select a date and time that works for your schedule. You will receive an instant confirmation with your Google Meet link.</p>
+              <a href="https://calendar.app.google/xBH5XLcovKeQQpTv8" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block; font-size:0.78rem;">View Available Times &amp; Book</a>
+              <p style="font-size:0.72rem; color:var(--gray); margin-top:1rem;">Opens Google Calendar booking page in a new tab</p>
             </div>
-
-            <a href="#schedule" onclick="showPage('schedule'); return false;" class="btn-primary" style="width:100%; text-align:center; display:block;">Reserve Your Consultation</a>
 
             <div style="margin-top:1.5rem; padding:1rem; border:1px solid var(--border-subtle);">
               <p style="font-size:0.75rem; color:var(--gray);">By scheduling a consultation, you acknowledge that the information shared will be treated with strict confidentiality and will be used solely for the purpose of preparing for and conducting the session. Your contact information will not be sold, shared, or used for unsolicited communications. For full details, please review our <a href="#legal" onclick="showPage('legal')" style="color:var(--gold); text-decoration:none;">Privacy Policy</a>.</p>
@@ -1988,7 +1990,7 @@
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
-        <p><a href="mailto:info@cuadradodeficonsulting.com" style="color:var(--gray); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray)'">info@cuadradodeficonsulting.com</a></p>
+        <p><a href="/cdn-cgi/l/email-protection#bed7d0d8d1feddcbdfdaccdfdad1dadbd8d7ddd1d0cdcbd2cad7d0d990ddd1d3" style="color:var(--gray); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray)'"><span class="__cf_email__" data-cfemail="5a33343c351a392f3b3e283b3e353e3f3c33393534292f362e33343d74393537">[email&#160;protected]</span></a></p>
         <p>Puerto Rico, United States</p>
         <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--gray);">Response within 3 business days</p>
         <div style="margin-top:1rem;">
@@ -2010,7 +2012,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const pageMeta = {
   home:        { title: 'Cuadrado DeFi Consulting LLC | Institutional Blockchain & DeFi Advisory', desc: 'Governance-first blockchain and DeFi advisory services for enterprises, government entities, and sophisticated investors. Puerto Rico registered.' },
   about:       { title: 'About | Cuadrado DeFi Consulting LLC', desc: 'Meet Kevin M. Rivera Cuadrado, PharmD — Founder & Principal Strategist. Institutional blockchain advisory grounded in clinical precision and governance discipline.' },
@@ -2048,14 +2050,4 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('popstate', () => {
-  const hash = window.location.hash.replace('#', '');
-  if (hash && document.getElementById(hash)) {
-    showPage(hash);
-  } else {
-    showPage('home');
-  }
-});
-
-function showTab(tabId) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('
+  const hash = window.location.hash.r
